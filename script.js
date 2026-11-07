@@ -150,7 +150,7 @@ async function addEvent() {
 
   if (editingEventId !== null || editingOriginalEvent !== null) {
 
-    let query = supabaseClient.from("UJV_AP_Calendar").update(dbActivity);
+    let query = supabaseClient.from("M_AP_Calendar").update(dbActivity);
 
     if (editingEventId !== null && editingEventId !== undefined) {
 
@@ -170,7 +170,7 @@ async function addEvent() {
 
   } else {
 
-    result = await supabaseClient.from("UJV_AP_Calendar").insert(dbActivity);
+    result = await supabaseClient.from("M_AP_Calendar").insert(dbActivity);
 
   }
 
@@ -338,7 +338,7 @@ async function loadEvents() {
 
   const { data, error } = await supabaseClient
 
-    .from("UJV_AP_Calendar")
+    .from("M_AP_Calendar")
 
     .select("*")
 
@@ -677,7 +677,7 @@ const filteredEvents = events.filter(event => {
 
         <p>
 
-          <strong>Director Name / UJV Host:</strong>
+          <strong>Director Name / M Host:</strong>
 
           ${escapeHtml(item.directorHost || "—")}
 
@@ -881,7 +881,7 @@ async function deleteEvent(index) {
 
  
 
-  let query = supabaseClient.from("UJV_AP_Calendar").delete();
+  let query = supabaseClient.from("M_AP_Calendar").delete();
 
   if (item.id !== undefined && item.id !== null) {
 
@@ -1986,7 +1986,7 @@ function showSelectedActivity(
 
  
 
-        <strong>Director / UJV Host:</strong>
+        <strong>Director / M Host:</strong>
 
  
 
@@ -2394,7 +2394,7 @@ function exportEventsToCsv() {
 
   const exportEvents = selectedDirector === "all" ? events : events.filter(event => event.directorHost === selectedDirector);
 
-  const headers = ["Activity Type", "Activity / Trip Name", "Participant", "Director / UJV Host", "Start Date", "End Date", "Time", "Event / Activity", "Destination", "Hotel / Property", "Flight Information", "Status", "Notes"];
+  const headers = ["Activity Type", "Activity / Trip Name", "Participant", "Director / M Host", "Start Date", "End Date", "Time", "Event / Activity", "Destination", "Hotel / Property", "Flight Information", "Status", "Notes"];
 
   const rows = exportEvents.map(event => [event.activityType, event.activityName, event.participant, event.directorHost, event.startDate, event.endDate, event.time, event.eventActivity, event.destination, event.hotel, event.flight, event.status, event.notes]);
 
@@ -2408,7 +2408,7 @@ function exportEventsToCsv() {
 
   link.href = url;
 
-  link.download = "UJV_Travel_Events_Calendar.csv";
+  link.download = "M_Travel_Events_Calendar.csv";
 
   document.body.appendChild(link);
 
